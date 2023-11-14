@@ -1,7 +1,8 @@
 (ns firstclojureapp.core
   (:require [ring.adapter.jetty :refer [run-jetty]]
             [compojure.core :refer :all]
-            [compojure.route :as route])
+            [compojure.route :as route]
+            [ring.middleware.defaults :refer :all])
   (:gen-class))
 
 (defroutes app
@@ -17,4 +18,5 @@
 (defn -main
   "I don't do a whole lot ... yet."
   [& args]
-  (run-jetty app  {:port 80}))
+  ;; jetty wev server used by ring, app is a handler to it. We wrap
+  (run-jetty (wrap-defaults app site-defaults)  {:port 80}))

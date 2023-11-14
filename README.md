@@ -24,7 +24,8 @@ FIXME: listing of options this app accepts.
 
 ...
 
-### Any Other Sections
+### Learning Resources
+[Writing Clojure Webapps with Ring](https://www.baeldung.com/clojure-ring)
 ### That You Think
 ### Might be Useful
 

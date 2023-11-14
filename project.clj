@@ -6,7 +6,8 @@
   :dependencies [[org.clojure/clojure "1.11.1"]
                  [ring "1.8.0"]
                  [compojure "1.6.2"]
-                 [ring/ring-defaults "0.3.2"]]
+                 [ring/ring-defaults "0.3.2"]
+                 [yogthos/config "1.1.7"]]
   :main ^:skip-aot firstclojureapp.core
   :target-path "target/%s"
   :profiles {:uberjar {:aot :all

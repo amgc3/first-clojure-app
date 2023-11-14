@@ -28,6 +28,10 @@ FIXME: listing of options this app accepts.
 [Writing Clojure Webapps with Ring](https://www.baeldung.com/clojure-ring)
 ### That You Think
 ### Might be Useful
+[ring-defaults](https://github.com/ring-clojure/ring-defaults)
+
+[yogthos/config](https://github.com/yogthos/config)
+find out what is a .edn file
 
 ## License
 

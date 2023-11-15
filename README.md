@@ -31,7 +31,11 @@ FIXME: listing of options this app accepts.
 [ring-defaults](https://github.com/ring-clojure/ring-defaults)
 
 [yogthos/config](https://github.com/yogthos/config)
+
 find out what is a .edn file
+
+fun fact : if you provide port=0, the app will be assigned a random port. Try creating a jar (lein uberjar) and then running
+###### java -jar -Dport=0  uberjar/firstclojureapp-0.1.0-SNAPSHOT-standalone.ja
 
 ## License
 

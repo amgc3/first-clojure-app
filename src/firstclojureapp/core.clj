@@ -1,14 +1,27 @@
 (ns firstclojureapp.core
   (:require [ring.adapter.jetty :refer [run-jetty]]
-            [compojure.core :refer :all]
+            [compojure.core :refer [GET defroutes]]
             [compojure.route :as route]
             [ring.middleware.defaults :refer [wrap-defaults site-defaults]]
-            [config.core :refer [env]])
+            [config.core :refer [env]]
+            [rum.core :refer [defc render-static-markup]]
+            )
   (:gen-class))
 
+(defc template [headline component]
+      [:div {:id "main-div"
+             :class "main-page-div"}
+       [:h1 headline]
+       (component)])
+
+(defc main-page []
+      [:p "Welcome to the main page"])
+(defc friends-page []
+      [:p "This is the friends page, still work in progress"])
+
 (defroutes app
-           (GET "/" [] "<h1>Hello, World!</h1>")
-           (GET "/friends" [] "<h1>There are no friends yet </h1>"
+           (GET "/" [] (render-static-markup (template "Hello There" main-page)))
+           (GET "/friends" [] (render-static-markup (template "No friends yet :(" friends-page))
                 ))
 
 ;(defn app-handler [request]

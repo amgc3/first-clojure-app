@@ -27,10 +27,13 @@ FIXME: listing of options this app accepts.
 ### Learning Resources
 [Writing Clojure Webapps with Ring](https://www.baeldung.com/clojure-ring)
 ### That You Think
-### Might be Useful
-[ring-defaults](https://github.com/ring-clojure/ring-defaults)
 
-[yogthos/config](https://github.com/yogthos/config)
+### Useful
+[ring-defaults](https://github.com/ring-clojure/ring-defaults) This library provides sensible and secure default configurations of Ring middleware for both websites and HTTP APIs.
+
+[yogthos/config](https://github.com/yogthos/config) A library for managing configuration using environment variables and EDN configuration files.
+
+[next-jdbc ](https://github.com/seancorfield/next-jdbc) A new low-level Clojure wrapper for JDBC-based access to databases.
 
 find out what is a .edn file
 

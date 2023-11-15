@@ -1,11 +1,12 @@
 (ns firstclojureapp.core
-  (:require [ring.adapter.jetty :refer [run-jetty]]
-            [compojure.core :refer [GET defroutes]]
-            [compojure.route :as route]
-            [ring.middleware.defaults :refer [wrap-defaults site-defaults]]
-            [config.core :refer [env]]
-            [rum.core :refer [defc render-static-markup]]
-            )
+  (:require
+    [next.jdbc :as jdbc]
+    [ring.adapter.jetty :refer [run-jetty]]
+    [compojure.core :refer [GET defroutes]]
+    [ring.middleware.defaults :refer [wrap-defaults site-defaults]]
+    [config.core :refer [env]]
+    [rum.core :refer [defc render-static-markup]]
+    )
   (:gen-class))
 
 (defc template [headline component]
@@ -15,27 +16,25 @@
        [:ul {:class "nav"}
         [:li [:a {:href "/"} "Home"]]
         [:li [:a {:href "/friends"} "Friends"]]
-
         ]
-       (component)])
+       component ])
 
-(defc main-page []
-      [:p "Welcome to the main page"])
+(def datasource (jdbc/get-datasource (:db env)))
+(defc main-page [req]
+      [:p (str req)])
+
 (defc friends-page []
       [:p "This is the friends page, still work in progress"])
 
 (defroutes app
-           (GET "/" [] (render-static-markup (template "Hello There" main-page)))
-           (GET "/friends" [] (render-static-markup (template "No friends yet :(" friends-page))
-                ))
+           (GET "/" [req] (render-static-markup (template "Hello There" (main-page {:request req}))))
+           (GET "/friends" [] (render-static-markup (template "No friends yet :(" (friends-page)))))
 
-;(defn app-handler [request]
-;  {:status 200
-;    :headers {"Content-Type" "text/html"}
-;    :body "<html><body><h1>Hello, there!</h1></body></html>"})
 
 (defn -main
   "I don't do a whole lot ... yet."
   [& args]
-  ;; jetty wev server used by ring, app is a handler to it. We wrap
-  (run-jetty (wrap-defaults app site-defaults)  {:port (:port env)}))
+    (jdbc/execute! datasource ["SELECT 1"] )
+    (run-jetty (wrap-defaults app site-defaults)  {:port (:port env)}))
+
+

@@ -12,6 +12,11 @@
       [:div {:id "main-div"
              :class "main-page-div"}
        [:h1 headline]
+       [:ul {:class "nav"}
+        [:li [:a {:href "/"} "Home"]]
+        [:li [:a {:href "/friends"} "Friends"]]
+
+        ]
        (component)])
 
 (defc main-page []
